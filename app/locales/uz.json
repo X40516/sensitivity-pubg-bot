@@ -141,5 +141,8 @@
   "admin_player_added": "✅ Pro o'yinchi qo'shildi: {nickname}",
   "admin_player_deleted": "🗑 Pro o'yinchi o'chirildi: {nickname}",
   "cancelled": "❌ Bekor qilindi.",
-  "btn_contact_admin": "📞 Admin bilan bog'lanish"
+  "btn_contact_admin": "📞 Admin bilan bog'lanish",
+  "btn_search_nickname": "🔎 Nickname bo'yicha qidirish",
+  "ask_search_nickname": "🔎 Pro o'yinchi nickname'ini yozing:",
+  "pro_player_not_found": "❌ '{nickname}' nomli pro o'yinchi bazada topilmadi."
 }
