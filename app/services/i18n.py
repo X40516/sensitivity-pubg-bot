@@ -8,7 +8,7 @@ from pathlib import Path
 
 from app.config import settings
 
-_LOCALES_DIR = Path(__file__).parent
+_LOCALES_DIR = Path(__file__).parent.parent / "locales"
 SUPPORTED_LOCALES = ("uz", "ru", "en")
 FALLBACK_LOCALE = "uz"
 
@@ -19,6 +19,11 @@ def _load(locale: str) -> dict[str, str]:
     if locale not in _cache:
         path = _LOCALES_DIR / f"{locale}.json"
         if not path.exists():
+            # Cheksiz rekursiyaning oldini olish: agar fallback faylning o'zi
+            # ham topilmasa (masalan noto'g'ri deploy), bo'sh lug'at qaytaramiz.
+            if locale == FALLBACK_LOCALE:
+                _cache[locale] = {}
+                return _cache[locale]
             return _load(FALLBACK_LOCALE)
         with open(path, encoding="utf-8") as f:
             _cache[locale] = json.load(f)
