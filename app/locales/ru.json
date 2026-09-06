@@ -141,5 +141,8 @@
   "admin_player_added": "✅ Pro игрок добавлен: {nickname}",
   "admin_player_deleted": "🗑 Pro игрок удалён: {nickname}",
   "cancelled": "❌ Отменено.",
-  "btn_contact_admin": "📞 Связаться с админом"
+  "btn_contact_admin": "📞 Связаться с админом",
+  "btn_search_nickname": "🔎 Поиск по никнейму",
+  "ask_search_nickname": "🔎 Введите никнейм pro игрока:",
+  "pro_player_not_found": "❌ Pro игрок с никнеймом '{nickname}' не найден в базе."
 }
