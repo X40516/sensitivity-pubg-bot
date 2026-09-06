@@ -140,5 +140,6 @@
   "admin_ask_player_verified": "✅ Is this confirmed by the source? (yes/no)",
   "admin_player_added": "✅ Pro player added: {nickname}",
   "admin_player_deleted": "🗑 Pro player deleted: {nickname}",
-  "cancelled": "❌ Cancelled."
+  "cancelled": "❌ Cancelled.",
+  "btn_contact_admin": "📞 Contact admin"
 }
