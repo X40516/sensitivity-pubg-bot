@@ -99,6 +99,7 @@ def language_keyboard() -> InlineKeyboardMarkup:
 
 def pro_players_menu_keyboard(locale: str) -> InlineKeyboardMarkup:
     builder = InlineKeyboardBuilder()
+    builder.button(text=t("btn_search_nickname", locale), callback_data=ProPlayerCB(action="search"))
     builder.button(text=t("btn_top10", locale), callback_data=ProPlayerCB(action="top10"))
     builder.button(text=t("btn_filter", locale), callback_data=ProPlayerCB(action="filter"))
     builder.adjust(1)

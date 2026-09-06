@@ -10,6 +10,7 @@ from aiogram.types import CallbackQuery, Message
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.database.models import ProPlayer, ProPlayerSensitivity
 from app.keyboards.callback_data import MenuCB, ProFilterCB, ProPlayerCB
 from app.keyboards.main_menu import simple_back_home_keyboard, with_back_home
 from app.keyboards.misc import pro_players_list_keyboard, pro_players_menu_keyboard
@@ -18,6 +19,7 @@ from app.services.pro_player_service import (
     filter_players,
     get_latest_sensitivity,
     get_player,
+    get_player_by_nickname,
     list_players,
     top10_players,
 )
@@ -27,6 +29,10 @@ router = Router(name="pro_players")
 
 class ProFilterFlow(StatesGroup):
     waiting_value = State()
+
+
+class ProSearchFlow(StatesGroup):
+    waiting_nickname = State()
 
 
 FILTER_FIELDS = [
@@ -128,6 +134,47 @@ async def show_all_players(callback: CallbackQuery, locale: str, session: AsyncS
     await callback.answer()
 
 
+# ---------------------------------------------------------------------------
+# Nickname bo'yicha qidirish
+# ---------------------------------------------------------------------------
+
+
+@router.callback_query(ProPlayerCB.filter(F.action == "search"))
+async def ask_search_nickname(callback: CallbackQuery, state: FSMContext, locale: str) -> None:
+    await state.set_state(ProSearchFlow.waiting_nickname)
+    await callback.message.edit_text(
+        t("ask_search_nickname", locale), reply_markup=simple_back_home_keyboard(locale)
+    )
+    await callback.answer()
+
+
+@router.message(ProSearchFlow.waiting_nickname)
+async def do_search_nickname(message: Message, state: FSMContext, locale: str, session: AsyncSession) -> None:
+    await state.clear()
+    nickname = message.text.strip()
+
+    player = await get_player_by_nickname(session, nickname)
+    if not player:
+        builder = InlineKeyboardBuilder()
+        builder.button(text=t("btn_search_nickname", locale), callback_data=ProPlayerCB(action="search"))
+        builder.adjust(1)
+        await message.answer(
+            t("pro_player_not_found", locale, nickname=nickname), reply_markup=with_back_home(builder, locale)
+        )
+        return
+
+    sensitivity = await get_latest_sensitivity(session, player.id)
+    text = _render_player_text(player, sensitivity, locale)
+
+    builder = InlineKeyboardBuilder()
+    await message.answer(text, reply_markup=with_back_home(builder, locale))
+
+
+# ---------------------------------------------------------------------------
+# Player ko'rish (umumiy formatlash funksiyasi)
+# ---------------------------------------------------------------------------
+
+
 def _format_sensitivity_block(title: str, values: dict | None, locale: str) -> str:
     if not values:
         return f"{title}\n{t('sensitivity_not_found', locale)}"
@@ -135,15 +182,7 @@ def _format_sensitivity_block(title: str, values: dict | None, locale: str) -> s
     return "\n".join(lines)
 
 
-@router.callback_query(ProPlayerCB.filter(F.action == "view"))
-async def view_player(callback: CallbackQuery, callback_data: ProPlayerCB, locale: str, session: AsyncSession) -> None:
-    player = await get_player(session, callback_data.player_id)
-    if not player:
-        await callback.answer(t("error_generic", locale), show_alert=True)
-        return
-
-    sensitivity = await get_latest_sensitivity(session, player.id)
-
+def _render_player_text(player: ProPlayer, sensitivity: ProPlayerSensitivity | None, locale: str) -> str:
     lines = [
         f"👤 <b>{player.nickname}</b>",
         f"👥 {player.team or '-'}",
@@ -176,8 +215,19 @@ async def view_player(callback: CallbackQuery, callback_data: ProPlayerCB, local
     else:
         lines.append(t("sensitivity_not_found", locale))
 
-    from aiogram.utils.keyboard import InlineKeyboardBuilder
+    return "\n".join(lines)
+
+
+@router.callback_query(ProPlayerCB.filter(F.action == "view"))
+async def view_player(callback: CallbackQuery, callback_data: ProPlayerCB, locale: str, session: AsyncSession) -> None:
+    player = await get_player(session, callback_data.player_id)
+    if not player:
+        await callback.answer(t("error_generic", locale), show_alert=True)
+        return
+
+    sensitivity = await get_latest_sensitivity(session, player.id)
+    text = _render_player_text(player, sensitivity, locale)
 
     builder = InlineKeyboardBuilder()
-    await callback.message.edit_text("\n".join(lines), reply_markup=with_back_home(builder, locale))
+    await callback.message.edit_text(text, reply_markup=with_back_home(builder, locale))
     await callback.answer()
