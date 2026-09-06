@@ -40,6 +40,7 @@ class Settings:
     bot_token: str = field(default_factory=lambda: _get_env("BOT_TOKEN", required=True))
     database_url: str = field(default_factory=lambda: _get_env("DATABASE_URL", required=True))
     admin_ids: list[int] = field(default_factory=lambda: _parse_admin_ids(_get_env("ADMIN_IDS", "")))
+    admin_contact_url: str = field(default_factory=lambda: _get_env("ADMIN_CONTACT_URL", "https://t.me/X40516"))
     ai_api_key: str = field(default_factory=lambda: _get_env("AI_API_KEY", ""))
     use_webhook: bool = field(default_factory=lambda: _get_env("USE_WEBHOOK", "false").lower() == "true")
     webhook_base_url: str = field(default_factory=lambda: _get_env("WEBHOOK_BASE_URL", ""))

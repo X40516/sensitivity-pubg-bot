@@ -6,6 +6,7 @@ from __future__ import annotations
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
+from app.config import settings
 from app.keyboards.callback_data import MenuCB
 from app.services.i18n import t
 
@@ -28,7 +29,13 @@ def main_menu_keyboard(locale: str) -> InlineKeyboardMarkup:
     for text_key, action in items:
         builder.button(text=t(text_key, locale), callback_data=MenuCB(action=action))
     builder.adjust(2)
+    # Admin bilan bog'lanish tugmasi — alohida qatorda, to'liq kenglikda
+    builder.row(InlineKeyboardButton(text=t("btn_contact_admin", locale), url=settings.admin_contact_url))
     return builder.as_markup()
+
+
+def contact_admin_button(locale: str) -> InlineKeyboardButton:
+    return InlineKeyboardButton(text=t("btn_contact_admin", locale), url=settings.admin_contact_url)
 
 
 def back_home_row(locale: str, back_action: str = "back", home_action: str = "home") -> list[InlineKeyboardButton]:

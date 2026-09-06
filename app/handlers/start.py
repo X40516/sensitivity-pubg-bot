@@ -44,9 +44,13 @@ async def go_back(callback: CallbackQuery, state: FSMContext, locale: str) -> No
 
 @router.callback_query(MenuCB.filter(F.action == "help"))
 async def show_help(callback: CallbackQuery, locale: str) -> None:
-    from app.keyboards.main_menu import simple_back_home_keyboard
+    from aiogram.utils.keyboard import InlineKeyboardBuilder
 
-    await callback.message.edit_text(t("help_text", locale), reply_markup=simple_back_home_keyboard(locale))
+    from app.keyboards.main_menu import contact_admin_button, with_back_home
+
+    builder = InlineKeyboardBuilder()
+    builder.row(contact_admin_button(locale))
+    await callback.message.edit_text(t("help_text", locale), reply_markup=with_back_home(builder, locale))
     await callback.answer()
 
 
