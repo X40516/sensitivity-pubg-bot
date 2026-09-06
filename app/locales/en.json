@@ -141,5 +141,8 @@
   "admin_player_added": "✅ Pro player added: {nickname}",
   "admin_player_deleted": "🗑 Pro player deleted: {nickname}",
   "cancelled": "❌ Cancelled.",
-  "btn_contact_admin": "📞 Contact admin"
+  "btn_contact_admin": "📞 Contact admin",
+  "btn_search_nickname": "🔎 Search by nickname",
+  "ask_search_nickname": "🔎 Enter the pro player nickname:",
+  "pro_player_not_found": "❌ No pro player found with nickname '{nickname}'."
 }
