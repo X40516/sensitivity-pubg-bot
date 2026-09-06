@@ -140,5 +140,6 @@
   "admin_ask_player_verified": "✅ Эта информация подтверждена источником? (да/нет)",
   "admin_player_added": "✅ Pro игрок добавлен: {nickname}",
   "admin_player_deleted": "🗑 Pro игрок удалён: {nickname}",
-  "cancelled": "❌ Отменено."
+  "cancelled": "❌ Отменено.",
+  "btn_contact_admin": "📞 Связаться с админом"
 }
