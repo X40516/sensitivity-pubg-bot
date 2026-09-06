@@ -140,5 +140,6 @@
   "admin_ask_player_verified": "✅ Bu ma'lumot manbada tasdiqlanganmi? (ha/yo'q)",
   "admin_player_added": "✅ Pro o'yinchi qo'shildi: {nickname}",
   "admin_player_deleted": "🗑 Pro o'yinchi o'chirildi: {nickname}",
-  "cancelled": "❌ Bekor qilindi."
+  "cancelled": "❌ Bekor qilindi.",
+  "btn_contact_admin": "📞 Admin bilan bog'lanish"
 }
