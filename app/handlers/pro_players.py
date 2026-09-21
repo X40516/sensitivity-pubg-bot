@@ -20,6 +20,7 @@ from app.services.pro_player_service import (
     get_latest_sensitivity,
     get_player,
     get_player_by_nickname,
+    search_player_by_nickname_ci,
     list_players,
     top10_players,
 )
@@ -153,7 +154,7 @@ async def do_search_nickname(message: Message, state: FSMContext, locale: str, s
     await state.clear()
     nickname = message.text.strip()
 
-    player = await get_player_by_nickname(session, nickname)
+    player = await search_player_by_nickname_ci(session, nickname)
     if not player:
         builder = InlineKeyboardBuilder()
         builder.button(text=t("btn_search_nickname", locale), callback_data=ProPlayerCB(action="search"))
