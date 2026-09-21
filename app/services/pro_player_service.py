@@ -4,7 +4,7 @@ yaratmaydi — faqat admin tomonidan kiritilgan yozuvlarni saqlaydi/qaytaradi.
 """
 from __future__ import annotations
 
-from sqlalchemy import select
+from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.database.models import ProPlayer, ProPlayerSensitivity
@@ -34,6 +34,14 @@ async def get_player(session: AsyncSession, player_id: int) -> ProPlayer | None:
 
 async def get_player_by_nickname(session: AsyncSession, nickname: str) -> ProPlayer | None:
     result = await session.execute(select(ProPlayer).where(ProPlayer.nickname == nickname))
+    return result.scalar_one_or_none()
+
+
+async def search_player_by_nickname_ci(session: AsyncSession, nickname: str) -> ProPlayer | None:
+    """Foydalanuvchi qidiruvi uchun katta-kichik harfga sezgir bo'lmagan qidiruv."""
+    result = await session.execute(
+        select(ProPlayer).where(func.lower(ProPlayer.nickname) == nickname.strip().lower())
+    )
     return result.scalar_one_or_none()
 
 

@@ -14,7 +14,8 @@ from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_applicati
 
 from app.bot import create_bot, create_dispatcher, setup_logging
 from app.config import settings
-from app.database.db import init_models
+from app.database.db import async_session_maker, init_models
+from app.services.seed_data import seed_verified_pro_players
 
 logger = logging.getLogger(__name__)
 
@@ -57,6 +58,11 @@ async def main() -> None:
     # Productionda buning o'rniga Alembic migratsiyalaridan foydalaning:
     #   alembic upgrade head
     await init_models()
+
+    # Real, manbali pro o'yinchilar ma'lumotlarini bazaga qo'shadi (idempotent —
+    # allaqachon mavjud bo'lsa qayta qo'shmaydi).
+    async with async_session_maker() as session:
+        await seed_verified_pro_players(session)
 
     if settings.use_webhook:
         await _run_webhook()
