@@ -9,11 +9,17 @@ allaqachon bazada bo'lsa, uni qayta qo'shmaydi va dublikat yaratmaydi.
 Manbalar:
 - NOVA Paraboy: https://en.esportsku.com/pubg-mobile-sensitivity-settings-nv-paraboy-version-pubg/
 - NV Order: https://wargxp.com/esports/nv-order-sensitivity-settings-and-control-code/
+- Levinho: https://sportskeeda.com/esports/pubg-mobile-levinho-s-control-setup-sensitivity-settings
+- AGGRESSOR, EZ4BADBOY (O'zbekiston terma jamoalari, PMCO Central Asia / PMNC Uzbekistan
+  rosterlari): https://liquipedia.net/pubgmobile/PUBG_Mobile_Super_League/Central_and_South_Asia/2025/Fall
 
-Diqqat: bu ma'lumotlar uchinchi tomon (community/blog) manbalaridan olingan,
+Diqqat: bu ma'lumotlar uchinchi tomon (community/blog/wiki) manbalaridan olingan,
 o'yinchilarning rasmiy/birinchi shaxs tasdiqlangan bayonoti emas. Shu sabab
 verified=False qilib belgilangan — foydalanuvchi manba havolasi orqali
-o'zi tekshirishi mumkin.
+o'zi tekshirishi mumkin. AGGRESSOR va EZ4BADBOY uchun faqat jamoa/region
+ma'lumoti tasdiqlangan (Liquipedia roster orqali) — ularning sensitivity
+sozlamalari hech qanday ochiq manbada topilmagani uchun bo'sh (None) qoldirilgan,
+bot bu holatda "sensitivity ma'lumoti topilmadi" deb to'g'ri ko'rsatadi.
 """
 from __future__ import annotations
 
@@ -113,6 +119,82 @@ SEED_PLAYERS: list[dict] = [
             "8x": 55,
         },
         # Order ADS Gyroscope sozlamalarini ham yopiq qilib qo'ygan.
+        "ads_gyroscope_sensitivity": None,
+    },
+    {
+        "nickname": "Levinho",
+        "team": None,
+        "region": "Sweden",
+        "device": "iPhone XS Max",
+        "fps": None,
+        "gyroscope_enabled": True,
+        "play_style": None,
+        "source_url": "https://sportskeeda.com/esports/pubg-mobile-levinho-s-control-setup-sensitivity-settings",
+        "verified": False,
+        "camera_sensitivity": {
+            "TPP No Scope": 300,
+            "FPP No Scope": 300,
+            "Red Dot": 60,
+            "2x": 36,
+            "3x": 22,
+            "4x": 17,
+            "6x": 8,
+            "8x": 8,
+        },
+        "ads_sensitivity": {
+            "TPP No Scope": 300,
+            "FPP No Scope": 120,
+            "Red Dot": 60,
+            "2x": 36,
+            "3x": 22,
+            "4x": 20,
+            "6x": 12,
+            "8x": 12,
+        },
+        "gyroscope_sensitivity": {
+            "TPP No Scope": 300,
+            "FPP No Scope": 300,
+            "Red Dot": 300,
+            "2x": 300,
+            "3x": 150,
+            "4x": 135,
+            "6x": 57,
+            "8x": 55,
+        },
+        # Manbada ADS Gyroscope alohida ko'rsatilmagan (faqat bitta umumiy
+        # Gyroscope jadvali berilgan), shuning uchun uydirmaslik uchun None.
+        "ads_gyroscope_sensitivity": None,
+    },
+    {
+        # Liquipedia PMCO Central Asia / PMNC Uzbekistan roster'lariga ko'ra,
+        # THE721 AGGRESSOR jamoasi o'zbek terma jamoasi sifatida qatnashgan.
+        "nickname": "AGGRESSOR",
+        "team": "THE721 AGGRESSOR",
+        "region": "Uzbekistan",
+        "device": None,
+        "fps": None,
+        "gyroscope_enabled": None,
+        "play_style": None,
+        "source_url": "https://liquipedia.net/pubgmobile/PUBG_Mobile_Super_League/Central_and_South_Asia/2025/Fall",
+        "verified": False,
+        "camera_sensitivity": None,
+        "ads_sensitivity": None,
+        "gyroscope_sensitivity": None,
+        "ads_gyroscope_sensitivity": None,
+    },
+    {
+        "nickname": "EZ4BADBOY",
+        "team": "ARCRED",
+        "region": "Uzbekistan",
+        "device": None,
+        "fps": None,
+        "gyroscope_enabled": None,
+        "play_style": None,
+        "source_url": "https://liquipedia.net/pubgmobile/PUBG_Mobile_Super_League/Central_and_South_Asia/2025/Fall",
+        "verified": False,
+        "camera_sensitivity": None,
+        "ads_sensitivity": None,
+        "gyroscope_sensitivity": None,
         "ads_gyroscope_sensitivity": None,
     },
 ]
