@@ -13,6 +13,8 @@ Manbalar:
 - ZGOD: https://www.sportskeeda.com/esports/pubg-mobile-tsm-entity-zgod-s-controls-setup-sensitivity-settings
 - BTR Zuxxy: https://sportskeeda.com/esports/pubg-mobile-btrxzuxxy-s-controls-setup-sensitivity-settings
 - ScoutOP: https://sportskeeda.com/esports/pubg-mobile-scout-control-setup-sensitivity-settings
+- Soul Regaltos: https://www.sportskeeda.com/esports/pubg-mobile-soul-regaltos-control-setup-sensitivity-settings
+- BTR Luxxy: https://www.sportskeeda.com/esports/pubg-mobile-btr-luxxy-s-controls-setup-sensitivity-settings
 - AGGRESSOR, EZ4BADBOY (O'zbekiston terma jamoalari, PMCO Central Asia / PMNC Uzbekistan
   rosterlari): https://liquipedia.net/pubgmobile/PUBG_Mobile_Super_League/Central_and_South_Asia/2025/Fall
 
@@ -23,6 +25,12 @@ o'zi tekshirishi mumkin. AGGRESSOR va EZ4BADBOY uchun faqat jamoa/region
 ma'lumoti tasdiqlangan (Liquipedia roster orqali) — ularning sensitivity
 sozlamalari hech qanday ochiq manbada topilmagani uchun bo'sh (None) qoldirilgan,
 bot bu holatda "sensitivity ma'lumoti topilmadi" deb to'g'ri ko'rsatadi.
+
+TOP 10 tartibi haqida: `rank_position` maydoni rasmiy/tashqi reyting emas —
+jamoalarning PUBG Mobile'dagi umumiy tanilganligi asosida tuzilgan ichki
+kuratorlik tartibi (masalan, Nova Esports va Bigetron Esports xalqaro
+turnirlarda ko'p yillik tarixga ega mashhur tashkilotlar). Bu haqiqiy
+musobaqa natijalariga asoslangan rasmiy reyting emasligini unutmang.
 """
 from __future__ import annotations
 
@@ -39,6 +47,7 @@ logger = logging.getLogger(__name__)
 SEED_PLAYERS: list[dict] = [
     {
         "nickname": "Paraboy",
+        "rank_position": 1,
         "team": "Nova Esports",
         "region": "China",
         "device": "iPhone 13 Pro Max",
@@ -90,6 +99,7 @@ SEED_PLAYERS: list[dict] = [
     },
     {
         "nickname": "Order",
+        "rank_position": 2,
         "team": "Nova Esports",
         "region": "China",
         "device": None,
@@ -126,6 +136,7 @@ SEED_PLAYERS: list[dict] = [
     },
     {
         "nickname": "Levinho",
+        "rank_position": 8,
         "team": None,
         "region": "Sweden",
         "device": "iPhone XS Max",
@@ -170,6 +181,7 @@ SEED_PLAYERS: list[dict] = [
     },
     {
         "nickname": "ZGOD",
+        "rank_position": 6,
         "team": "TSM-Entity",
         "region": "India",
         "device": None,
@@ -212,6 +224,7 @@ SEED_PLAYERS: list[dict] = [
     },
     {
         "nickname": "Zuxxy",
+        "rank_position": 3,
         "team": "Bigetron Esports",
         "region": "Indonesia",
         "device": None,
@@ -254,6 +267,7 @@ SEED_PLAYERS: list[dict] = [
     },
     {
         "nickname": "Scout",
+        "rank_position": 7,
         "team": "Orange Rock",
         "region": "India",
         "device": None,
@@ -295,9 +309,98 @@ SEED_PLAYERS: list[dict] = [
         "ads_gyroscope_sensitivity": None,
     },
     {
+        "nickname": "Regaltos",
+        "rank_position": 5,
+        "team": "Team Soul",
+        "region": "India",
+        "device": None,
+        "fps": None,
+        # Manba: "non-gyro player, faqat scope-on holatida gyroscope ishlatadi"
+        "gyroscope_enabled": False,
+        "play_style": None,
+        "source_url": "https://www.sportskeeda.com/esports/pubg-mobile-soul-regaltos-control-setup-sensitivity-settings",
+        "verified": False,
+        "camera_sensitivity": {
+            "TPP No Scope": 90,
+            "FPP No Scope": 92,
+            "Red Dot": 29,
+            "2x": 1,
+            "3x": 9,
+            "4x": 9,
+            "6x": 6,
+            "8x": 6,
+        },
+        "ads_sensitivity": {
+            "TPP No Scope": 100,
+            "FPP No Scope": 120,
+            "Red Dot": 30,
+            "2x": 2,
+            "3x": 8,
+            "4x": 8,
+            "6x": 8,
+            "8x": 6,
+        },
+        "gyroscope_sensitivity": {
+            "TPP No Scope": 200,
+            "FPP No Scope": 200,
+            "Red Dot": 300,
+            "2x": 300,
+            "3x": 200,
+            "4x": 100,
+            "6x": 80,
+            "8x": 70,
+        },
+        "ads_gyroscope_sensitivity": None,
+    },
+    {
+        "nickname": "Luxxy",
+        "rank_position": 4,
+        "team": "Bigetron Esports",
+        "region": "Indonesia",
+        "device": None,
+        "fps": None,
+        # Manba: barcha gyroscope qiymatlari 1% — amalda non-gyro o'yinchi
+        "gyroscope_enabled": False,
+        "play_style": None,
+        "source_url": "https://www.sportskeeda.com/esports/pubg-mobile-btr-luxxy-s-controls-setup-sensitivity-settings",
+        "verified": False,
+        "camera_sensitivity": {
+            "TPP No Scope": 35,
+            "FPP No Scope": 35,
+            "Red Dot": 30,
+            "2x": 24,
+            "3x": 11,
+            "4x": 8,
+            "6x": 4,
+            "8x": 3,
+        },
+        "ads_sensitivity": {
+            "TPP No Scope": 35,
+            "FPP No Scope": 35,
+            "Red Dot": 34,
+            "2x": 24,
+            "3x": 19,
+            "4x": 8,
+            "6x": 8,
+            "8x": 4,
+        },
+        "gyroscope_sensitivity": {
+            "TPP No Scope": 1,
+            "FPP No Scope": 1,
+            "Red Dot": 1,
+            "2x": 1,
+            "3x": 1,
+            "4x": 1,
+            "6x": 1,
+            "8x": 1,
+        },
+        "ads_gyroscope_sensitivity": None,
+    },
+    {
         # Liquipedia PMCO Central Asia / PMNC Uzbekistan roster'lariga ko'ra,
         # THE721 AGGRESSOR jamoasi o'zbek terma jamoasi sifatida qatnashgan.
         "nickname": "AGGRESSOR",
+        "rank_position": 9,
         "team": "THE721 AGGRESSOR",
         "region": "Uzbekistan",
         "device": None,
@@ -313,6 +416,7 @@ SEED_PLAYERS: list[dict] = [
     },
     {
         "nickname": "EZ4BADBOY",
+        "rank_position": 10,
         "team": "ARCRED",
         "region": "Uzbekistan",
         "device": None,
@@ -333,6 +437,12 @@ async def seed_verified_pro_players(session: AsyncSession) -> None:
     for data in SEED_PLAYERS:
         existing = await get_player_by_nickname(session, data["nickname"])
         if existing:
+            # O'yinchi allaqachon mavjud — faqat rank_position'ni yangilaymiz
+            # (agar seed ma'lumotida belgilangan bo'lsa), boshqa qo'lda
+            # tahrirlangan maydonlarga tegmaymiz.
+            new_rank = data.get("rank_position")
+            if new_rank is not None and existing.rank_position != new_rank:
+                existing.rank_position = new_rank
             continue
 
         player = ProPlayer(
@@ -343,6 +453,7 @@ async def seed_verified_pro_players(session: AsyncSession) -> None:
             fps=data["fps"],
             gyroscope_enabled=data["gyroscope_enabled"],
             play_style=data["play_style"],
+            rank_position=data.get("rank_position"),
         )
         session.add(player)
         await session.flush()
